@@ -27,7 +27,3 @@ resource "aws_security_group" "security_group" {
     Name = "Security-Group-Terraform"
   }
 }
-
-data "aws_vpc" "vpc" {
-  id = "vpc-0764569707d727ec2"
-}

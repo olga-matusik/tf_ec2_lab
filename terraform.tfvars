@@ -1,0 +1,6 @@
+keypair_name = "movie-pub-key"
+instance_type = "t2.small"
+ami_owner_id = "099720109477"
+ami_name = "ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"
+pub_subnet_id = "subnet-097fb25bb6de1e686"
+vpc_id = "vpc-0764569707d727ec2"

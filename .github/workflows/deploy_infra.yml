@@ -1,0 +1,40 @@
+name: Terraform deployment for EC2
+
+#event, if more then as list []
+on: push
+
+#define the jobs, if more then one- run in parallel by default
+jobs:
+  #give a job id, as a string
+  terraform-deployment:
+    #each job needs the type of machine to run on
+    runs-on: ubuntu-latest
+    #add permissions for the oidc on github actions
+    permissions:
+      packages: write
+      contents: read
+      id-token: write
+    #each job is made out of steps- they run commands, setup tasks, etc...
+    #steps are as list of objects
+    steps:
+      #send aws credentials
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with: 
+          role-to-assume: arn:aws:iam::727250514989:role/github-actions-oidc
+          aws-region: "eu-central-1"
+      #clone and checkup the repo with the code
+      - name: clone/checkout the repo code
+        uses: actions/checkout@v2
+      #setup terraform
+      - name: Terraform setup
+        uses: hashicorp/setup-terraform@v2
+      #Terraform init, run command
+      - name: Terraform init
+        run: terraform init
+      #Terraform plan, run command
+      - name: Terraform plan
+        run: terraform plan
+      #Terraform apply
+      #- name: Terraform apply
+      #  run: terraform apply -auto-approve
