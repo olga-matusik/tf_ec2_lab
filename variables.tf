@@ -11,9 +11,9 @@ variable "ami_owner_id" {
 variable "ami_name" {
     description = "Name of ami"
 }
-variable "pub_subnet_id" {
-    description = "id of a public subnet to build ec2 in"
+variable "public_subnet_name" {
+    description = "name of a public subnet to build ec2 in"
 }
-variable "vpc_id" {
-    description = "id of a vpc"
+variable "vpc_name" {
+    description = "name of a vpc"
 }

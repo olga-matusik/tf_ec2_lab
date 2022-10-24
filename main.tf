@@ -7,10 +7,16 @@ data "aws_ami" "ami_name" {
   }
 }
 
-data "aws_subnet" "selected_subnet" {
-  id        = var.pub_subnet_id
+data "aws_vpc" "my_vpc" {
+  filter {
+    name   = "tag:Name"
+    values = [var.vpc_name]
+  }
 }
 
-data "aws_vpc" "vpc" {
-  id = var.vpc_id
+data "aws_subnet" "my_public_subnet" {
+  filter {
+    name   = "tag:Name"
+    values = [var.public_subnet_name]
+  }
 }
