@@ -37,5 +37,5 @@ jobs:
         run: terraform plan
       #Terraform apply
       - name: Terraform apply JUST on main
-        if: github.ref == "refs/heads/main"
         run: terraform apply -auto-approve
+        if: {{ github.ref == "refs/heads/main" }}
